@@ -38,8 +38,7 @@ private
   def check_integrity
     raise "Can't delete risk status" if Risk.where(risk_status_id: self.id).any?
   end
-
   def update_default
-    RiskStatus.update_all({ is_default: false }, ['id <> ?', id]) if self.is_default?
+    RiskStatus.update_all( is_default: false, id: id ) if self.is_default?
   end
 end
